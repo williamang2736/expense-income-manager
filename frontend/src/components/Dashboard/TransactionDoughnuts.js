@@ -27,59 +27,46 @@ class TransactionDoughnuts extends React.Component {
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
-          <Grid item sm={12} md={6}>
-            <Card className={classes.chartCard}>
-              <Typography variant="title" className={classes.chartTitle}>
-                Expenses
-              </Typography>
-              <Query type="GET_LIST" resource="expenses">
-                {({ data, loading, error }) => {
-                  if (loading) {
-                    return <Loading />;
-                  }
-                  if (error) {
-                    return <p />;
-                  }
-                  return (
-                    <TransactionChart
-                      transactions={data}
-                      chartTitle={"Expenses"}
-                    />
-                  );
-                }}
-              </Query>
-            </Card>
-          </Grid>
-          <Grid item sm={12} md={6}>
-            <Card className={classes.chartCard}>
-              <Typography variant="title" className={classes.chartTitle}>
-                Incomes
-              </Typography>
-              <Query type="GET_LIST" resource="incomes">
-                {({ data, loading, error }) => {
-                  if (loading) {
-                    return <Loading />;
-                  }
-                  if (error) {
-                    return <p />;
-                  }
-                  return (
-                    <TransactionChart
-                      transactions={data}
-                      chartTitle={"Incomes"}
-                    />
-                  );
-                }}
-              </Query>
-            </Card>
-          </Grid>
+          <TransactionChartGridItem
+            resource={"incomes"}
+            title={"Incomes"}
+            {...this.props}
+          />
+          <TransactionChartGridItem
+            resource={"expenses"}
+            title={"Expenses"}
+            {...this.props}
+          />
         </Grid>
       </div>
     );
   }
 }
 
-const TransactionChart = ({ transactions, chartTitle }) => {
+const TransactionChartGridItem = ({ resource, title, classes }) => {
+  return (
+    <Grid item sm={12} md={6}>
+      <Card className={classes.chartCard}>
+        <Typography variant="title" className={classes.chartTitle}>
+          {title}
+        </Typography>
+        <Query type="GET_LIST" resource={resource}>
+          {({ data, loading, error }) => {
+            if (loading) {
+              return <Loading />;
+            }
+            if (error) {
+              return <p />;
+            }
+            return <TransactionChart transactions={data} chartTitle={title} />;
+          }}
+        </Query>
+      </Card>
+    </Grid>
+  );
+};
+
+const TransactionChart = ({ transactions }) => {
   const xy = transactions.map(t => {
     return { x: t.name, y: t.amount };
   });
