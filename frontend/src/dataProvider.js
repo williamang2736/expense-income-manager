@@ -36,6 +36,7 @@ const convertDataProviderRequestToHTTP = (
       return { url: `${API_URL}/${resource}?${stringify(query)}` };
     }
     case GET_ONE:
+      if (!params.id) params.id = "";
       return { url: `${API_URL}/${resource}/${params.id}` };
     case GET_MANY: {
       const query = {
@@ -89,6 +90,11 @@ const convertHTTPResponseToDataProvider = (
   const { headers, json } = response;
   switch (type) {
     case GET_LIST:
+      if (!Array.isArray(json)) {
+        return {
+          data: json
+        };
+      }
       return {
         data: json.map(x => x),
         total: json.length

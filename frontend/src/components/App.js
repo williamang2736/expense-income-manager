@@ -5,7 +5,7 @@ import jsonServerProvider from "ra-data-json-server";
 import ExpenseIcon from "@material-ui/icons/CreditCard";
 import IncomeIcon from "@material-ui/icons/CreditCard";
 
-import Dashboard from './Dashboard';
+import Dashboard from "./Dashboard/Dashboard";
 import { ExpensesList, ExpenseEdit, ExpenseCreate } from "./expenses";
 import { IncomesList, IncomeEdit, IncomeCreate } from "./incomes";
 

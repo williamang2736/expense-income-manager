@@ -30,6 +30,7 @@ class BalanceViewSet(viewsets.ViewSet):
 
         return Response(
             {
+                "id": 1,  # temp
                 "expense_sum": expense_sum if expense_sum else 0,
                 "income_sum": income_sum if income_sum else 0,
                 "balance": balance,
