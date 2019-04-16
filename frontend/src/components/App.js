@@ -5,6 +5,7 @@ import jsonServerProvider from "ra-data-json-server";
 import ExpenseIcon from "@material-ui/icons/CreditCard";
 import IncomeIcon from "@material-ui/icons/CreditCard";
 
+import Dashboard from './Dashboard';
 import { ExpensesList, ExpenseEdit, ExpenseCreate } from "./expenses";
 import { IncomesList, IncomeEdit, IncomeCreate } from "./incomes";
 
@@ -12,7 +13,7 @@ import { IncomesList, IncomeEdit, IncomeCreate } from "./incomes";
 import dataProvider from "../dataProvider";
 
 const App = () => (
-  <Admin dataProvider={dataProvider}>
+  <Admin dashboard={Dashboard} dataProvider={dataProvider}>
     <Resource
       name="expenses"
       list={ExpensesList}
