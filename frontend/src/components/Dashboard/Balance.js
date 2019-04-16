@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Query, Loading } from "react-admin";
-import { Typography, Card, CardContent } from "@material-ui/core";
+import { Typography, Card, CardContent, Grid } from "@material-ui/core";
 
 class Balance extends Component {
   render() {
