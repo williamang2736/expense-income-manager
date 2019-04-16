@@ -17,4 +17,3 @@ class Expense(Transaction):
 
 class Income(Transaction):
     pass
-
