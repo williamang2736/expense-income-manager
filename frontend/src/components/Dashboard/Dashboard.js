@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
 
 import Balance from "./Balance";
 import TransactionDoughnuts from "./TransactionDoughnuts";
 
 export default () => {
   return (
-    <div>
-      <Balance />
-      <TransactionDoughnuts />
+    <div style={{ flexGrow: 1 }}>
+      <Grid container spacing={24}>
+        <Balance />
+        <TransactionDoughnuts />
+      </Grid>
     </div>
   );
 };

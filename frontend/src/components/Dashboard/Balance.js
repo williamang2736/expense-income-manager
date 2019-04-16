@@ -1,20 +1,9 @@
-// in src/Dashboard.js
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Query, Loading } from "react-admin";
-import { withStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
 import { Typography, Card, CardContent } from "@material-ui/core";
-
-const styles = theme => ({
-  root: {
-    flexGrow: 1
-  }
-});
 
 class Balance extends Component {
   render() {
-    const { classes } = this.props;
-
     return (
       <Query type="GET_ONE" resource="balance">
         {({ data, loading, error }) => {
@@ -25,57 +14,11 @@ class Balance extends Component {
             return <p>{JSON.stringify(error)}</p>;
           }
           return (
-            <div className={classes.root}>
-              <Grid container spacing={24}>
-                <Grid item sm={12} md={4}>
-                  <Card>
-                    <CardContent>
-                      <Typography
-                        className={classes.title}
-                        color="textSecondary"
-                        gutterBottom
-                      >
-                        Incomes
-                      </Typography>
-                      <Typography variant="headline">
-                        {data.income_sum}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-                <Grid item sm={12} md={4}>
-                  <Card>
-                    <CardContent>
-                      <Typography
-                        className={classes.title}
-                        color="textSecondary"
-                        gutterBottom
-                      >
-                        Expenses
-                      </Typography>
-                      <Typography variant="headline">
-                        {data.expense_sum}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-
-                <Grid item sm={12} md={4}>
-                  <Card>
-                    <CardContent>
-                      <Typography
-                        className={classes.title}
-                        color="textSecondary"
-                        gutterBottom
-                      >
-                        Balance
-                      </Typography>
-                      <Typography variant="headline">{data.balance}</Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              </Grid>
-            </div>
+            <Fragment>
+              <BalanceGridItem title={"Incomes"} value={data.income_sum} />
+              <BalanceGridItem title={"Expenses"} value={data.expense_sum} />
+              <BalanceGridItem title={"Balance"} value={data.balance} />
+            </Fragment>
           );
         }}
       </Query>
@@ -83,4 +26,19 @@ class Balance extends Component {
   }
 }
 
-export default withStyles(styles)(Balance);
+const BalanceGridItem = ({ title, value }) => {
+  return (
+    <Grid item sm={12} md={4}>
+      <Card>
+        <CardContent>
+          <Typography color="textSecondary" gutterBottom>
+            {title}
+          </Typography>
+          <Typography variant="headline">{value}</Typography>
+        </CardContent>
+      </Card>
+    </Grid>
+  );
+};
+
+export default Balance;

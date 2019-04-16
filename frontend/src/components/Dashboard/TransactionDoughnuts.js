@@ -1,5 +1,4 @@
-// in src/Dashboard.js
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Query, Loading } from "react-admin";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -8,9 +7,6 @@ import { CardHeader, Typography, Card, CardContent } from "@material-ui/core";
 import { VictoryPie } from "victory";
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1
-  },
   chartCard: {
     textAlign: "center"
   },
@@ -22,23 +18,19 @@ const styles = theme => ({
 
 class TransactionDoughnuts extends React.Component {
   render() {
-    const { classes } = this.props;
-
     return (
-      <div className={classes.root}>
-        <Grid container spacing={24}>
-          <TransactionChartGridItem
-            resource={"incomes"}
-            title={"Incomes"}
-            {...this.props}
-          />
-          <TransactionChartGridItem
-            resource={"expenses"}
-            title={"Expenses"}
-            {...this.props}
-          />
-        </Grid>
-      </div>
+      <Fragment>
+        <TransactionChartGridItem
+          resource={"incomes"}
+          title={"Incomes"}
+          {...this.props}
+        />
+        <TransactionChartGridItem
+          resource={"expenses"}
+          title={"Expenses"}
+          {...this.props}
+        />
+      </Fragment>
     );
   }
 }
