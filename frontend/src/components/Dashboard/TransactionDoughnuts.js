@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { CardHeader, Typography, Card, CardContent } from "@material-ui/core";
-import { VictoryPie } from "victory";
+import { VictoryPie, VictoryLabel } from "victory";
 
 const styles = theme => ({
   chartCard: {
@@ -60,7 +60,7 @@ const TransactionChartGridItem = ({ resource, title, classes }) => {
 
 const TransactionChart = ({ transactions }) => {
   const xy = transactions.map(t => {
-    return { x: t.name, y: t.amount };
+    return { x: t.name, y: t.amount_float };
   });
   return (
     <VictoryPie
@@ -68,7 +68,8 @@ const TransactionChart = ({ transactions }) => {
       height={250}
       innerRadius={50}
       colorScale={"qualitative"}
-      labels={d => `${d.x}: ${d.y}`}
+      labels={d => `${d.x}: ${d.y.toFixed(2)}`}
+      labelRadius={105}
     />
   );
 };
