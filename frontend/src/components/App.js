@@ -9,17 +9,19 @@ import authProvider from "./authProvider";
 import dataProvider from "./dataProvider";
 import { ExpensesList, ExpenseEdit, ExpenseCreate } from "./expenses";
 import { IncomesList, IncomeEdit, IncomeCreate } from "./incomes";
-import LoginPage from "./Authentication/LoginPage";
+import Login from "./Authentication/Login";
+import customRoutes from "./customRoutes";
 
 // import jsonServerProvider from "ra-data-json-server";
 // const dataProvider = jsonServerProvider('http://jsonplaceholder.typicode.com');
 
 const App = () => (
   <Admin
+    customRoutes={customRoutes}
     dashboard={Dashboard}
     authProvider={authProvider}
     dataProvider={dataProvider}
-    loginPage={LoginPage}
+    loginPage={Login}
   >
     <Resource
       name="expenses"
