@@ -8,9 +8,7 @@ from django.db.models import Count, Sum
 
 class ExpenseViewSet(viewsets.ModelViewSet):
     serializer_class = ExpenseSerializer
-    permission_classes = [
-        permissions.IsAuthenticated
-    ]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         return self.request.user.expense_set.all()
@@ -21,9 +19,7 @@ class ExpenseViewSet(viewsets.ModelViewSet):
 
 class IncomeViewSet(viewsets.ModelViewSet):
     serializer_class = IncomeSerializer
-    permission_classes = [
-        permissions.IsAuthenticated
-    ]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         return self.request.user.income_set.all()
@@ -31,20 +27,25 @@ class IncomeViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
+
 # need to update based on user
 class BalanceViewSet(viewsets.ViewSet):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def list(self, request):
-        expense_sum = Expense.objects.all().aggregate(Sum("amount"))["amount__sum"]
-        income_sum = Income.objects.all().aggregate(Sum("amount"))["amount__sum"]
+        expense_sum = self.request.user.expense_set.all().aggregate(Sum("amount"))[
+            "amount__sum"
+        ]
+        income_sum = self.request.user.income_set.all().aggregate(Sum("amount"))[
+            "amount__sum"
+        ]
         balance = 0
         if expense_sum and income_sum:
             balance = income_sum - expense_sum
 
         return Response(
             {
-                "id": 1,  # temp
+                "id": self.request.user.id,
                 "expense_sum": expense_sum if expense_sum else 0,
                 "income_sum": income_sum if income_sum else 0,
                 "balance": balance,
