@@ -5,7 +5,11 @@ from transactions.models import Expense, Income
 class ExpenseSerializer(serializers.ModelSerializer):
 
     amount_float = serializers.DecimalField(
-        source="amount", max_digits=15, decimal_places=2, coerce_to_string=False
+        source="amount",
+        max_digits=15,
+        decimal_places=2,
+        coerce_to_string=False,
+        required=False,
     )
 
     class Meta:
@@ -15,7 +19,11 @@ class ExpenseSerializer(serializers.ModelSerializer):
 
 class IncomeSerializer(serializers.ModelSerializer):
     amount_float = serializers.DecimalField(
-        source="amount", max_digits=15, decimal_places=2, coerce_to_string=False
+        source="amount",
+        max_digits=15,
+        decimal_places=2,
+        coerce_to_string=False,
+        required=False,
     )
 
     class Meta:

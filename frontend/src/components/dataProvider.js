@@ -128,7 +128,17 @@ export default (type, resource, params) => {
       .fetchJson(url, options)
       .then(response =>
         convertHTTPResponseToDataProvider(response, type, resource, params)
-      );
+      )
+      .catch(error => {
+        if (error.body && error.body.message) {
+          return Promise.reject({
+            message: `${error.status}: ${error.body.message}`
+          });
+        }
+        return Promise.reject({
+          message: `${error.status}: ${JSON.stringify(error.body)}`
+        });
+      });
   };
   return httpClient(url, options);
 };
