@@ -7,17 +7,31 @@ from django.db.models import Count, Sum
 
 
 class ExpenseViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.AllowAny]
     serializer_class = ExpenseSerializer
-    queryset = Expense.objects.all()
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+
+    def get_queryset(self):
+        return self.request.user.expense_set.all()
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
 class IncomeViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.AllowAny]
     serializer_class = IncomeSerializer
-    queryset = Income.objects.all()
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
 
+    def get_queryset(self):
+        return self.request.user.income_set.all()
 
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+# need to update based on user
 class BalanceViewSet(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
 
