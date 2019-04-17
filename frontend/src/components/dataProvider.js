@@ -113,13 +113,22 @@ const convertHTTPResponseToDataProvider = (
  * @returns {Promise} the Promise for response
  */
 export default (type, resource, params) => {
-  const { fetchJson } = fetchUtils;
   const { url, options } = convertDataProviderRequestToHTTP(
     type,
     resource,
     params
   );
-  return fetchJson(url, options).then(response =>
-    convertHTTPResponseToDataProvider(response, type, resource, params)
-  );
+  const httpClient = (url, options = {}) => {
+    if (!options.headers) {
+      options.headers = new Headers({ Accept: "application/json" });
+    }
+    const token = localStorage.getItem("token");
+    options.headers.set("Authorization", `Token ${token}`);
+    return fetchUtils
+      .fetchJson(url, options)
+      .then(response =>
+        convertHTTPResponseToDataProvider(response, type, resource, params)
+      );
+  };
+  return httpClient(url, options);
 };
