@@ -35,7 +35,7 @@ const styles = theme => ({
 
 class AuthLayout extends Component {
   render() {
-    const { classes, children } = this.props;
+    const { classes, children, title = "Sign In" } = this.props;
 
     return (
       <main className={classes.main}>
@@ -45,7 +45,7 @@ class AuthLayout extends Component {
             <Lock />
           </Avatar>
           <Typography component="h1" variant="subheading">
-            Sign in
+            {title}
           </Typography>
           {children}
         </Paper>

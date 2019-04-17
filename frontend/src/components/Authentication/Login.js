@@ -8,11 +8,14 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { Form, Field } from "react-final-form";
 import { userLogin } from "react-admin";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import AuthLayout from "./AuthLayout";
+import AuthFormStyles from "./AuthFormStyles";
 
 class Login extends Component {
   render() {
+    const { classes } = this.props;
     return (
       <AuthLayout>
         <Form
@@ -55,9 +58,15 @@ class Login extends Component {
                     Sign In
                   </Button>
                 </Grid>
-                <Grid item xs={12}>
-                  <Typography onClick={() => this.props.openSignUpDialog()}>
-                    Sign Up
+                <Grid
+                  item
+                  xs={12}
+                  style={{ marginTop: "16px", textAlign: "center" }}
+                >
+                  <Typography>
+                    <Link to="/register" className={classes.switchAuthFormText}>
+                      Sign Up
+                    </Link>
                   </Typography>
                 </Grid>
               </Grid>
@@ -83,4 +92,4 @@ function validate(values) {
 export default connect(
   undefined,
   { userLogin }
-)(Login);
+)(withStyles(AuthFormStyles)(Login));
