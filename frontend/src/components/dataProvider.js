@@ -143,10 +143,23 @@ export default (type, resource, params) => {
           });
         }
         return Promise.reject({
-          message: `${error.status}: ${JSON.stringify(error.body)}`,
+          message: formatErrorMessage(error),
           status: error.status
         });
       });
   };
   return httpClient(url, options);
 };
+
+function formatErrorMessage({ body }) {
+  let errorMessage = "Error: ";
+  for (var key in body) {
+    if (body.hasOwnProperty(key)) {
+      errorMessage += `${key}: `;
+      body[key].forEach(e => {
+        errorMessage += `${e}`;
+      });
+    }
+  }
+  return errorMessage;
+}
