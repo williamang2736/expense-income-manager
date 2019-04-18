@@ -10,11 +10,16 @@ class ExpenseViewSet(viewsets.ModelViewSet):
     serializer_class = ExpenseSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self):
-        return self.request.user.expense_set.all()
-
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+    def get_queryset(self):
+        sortBy = self.request.query_params.get("sort")
+        queryset = self.request.user.expense_set.all()
+        if sortBy:
+            queryset = self.request.user.expense_set.order_by(sortBy)
+
+        return queryset
 
 
 class IncomeViewSet(viewsets.ModelViewSet):
@@ -22,13 +27,17 @@ class IncomeViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        return self.request.user.income_set.all()
+        sortBy = self.request.query_params.get("sort")
+        queryset = self.request.user.income_set.all()
+        if sortBy:
+            queryset = self.request.user.income_set.order_by(sortBy)
+
+        return queryset
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 
-# need to update based on user
 class BalanceViewSet(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated]
 

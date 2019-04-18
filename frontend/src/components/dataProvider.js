@@ -22,18 +22,24 @@ const API_URL = "/api";
 const convertDataProviderRequestToHTTP = (
   type,
   resource,
-  params = { pagination: {}, sort: {} }
+  params = {
+    pagination: { page: "", perPage: "" }
+  }
 ) => {
   switch (type) {
     case GET_LIST: {
-      const { page, perPage } = params.pagination;
-      const { field, order } = params.sort;
-      const query = {
-        sort: JSON.stringify([field, order]),
-        range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
-        filter: JSON.stringify(params.filter)
-      };
-      return { url: `${API_URL}/${resource}?${stringify(query)}` };
+      // const { page, perPage } = params.pagination;
+
+      let queryParams = "";
+      if (params.sort) {
+        const field =
+          params.sort.order === "ASC"
+            ? `-${params.sort.field}`
+            : params.sort.field;
+        queryParams = `sort=${field}`;
+      }
+
+      return { url: `${API_URL}/${resource}?${queryParams}` };
     }
     case GET_ONE:
       if (!params.id) params.id = "";
@@ -132,11 +138,13 @@ export default (type, resource, params) => {
       .catch(error => {
         if (error.body && error.body.message) {
           return Promise.reject({
-            message: `${error.status}: ${error.body.message}`
+            message: `${error.status}: ${error.body.message}`,
+            status: error.status
           });
         }
         return Promise.reject({
-          message: `${error.status}: ${JSON.stringify(error.body)}`
+          message: `${error.status}: ${JSON.stringify(error.body)}`,
+          status: error.status
         });
       });
   };

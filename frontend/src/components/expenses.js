@@ -15,7 +15,7 @@ import {
 import { validateTransaction } from "../validations";
 
 export const ExpensesList = props => (
-  <List {...props}>
+  <List {...props} sort={{ field: "name", order: "DESC" }}>
     <Datagrid rowClick="edit">
       <TextField source="name" />
       <TextField source="amount" />
