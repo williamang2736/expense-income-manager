@@ -15,9 +15,10 @@ class ExpenseViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         sortBy = self.request.query_params.get("sort")
-        queryset = self.request.user.expense_set.all()
         if sortBy:
             queryset = self.request.user.expense_set.order_by(sortBy)
+        else:
+            queryset = self.request.user.expense_set.all()
 
         return queryset
 
@@ -28,9 +29,10 @@ class IncomeViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         sortBy = self.request.query_params.get("sort")
-        queryset = self.request.user.income_set.all()
         if sortBy:
             queryset = self.request.user.income_set.order_by(sortBy)
+        else:
+            queryset = self.request.user.income_set.all()
 
         return queryset
 
