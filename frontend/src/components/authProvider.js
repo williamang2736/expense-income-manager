@@ -15,7 +15,7 @@ export default (type, params) => {
         }
       })
       .catch(err => {
-        alert(err);
+        console.log(err);
       });
   }
   // called when the user clicks on the logout button

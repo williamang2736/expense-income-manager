@@ -65,11 +65,10 @@ const TransactionChart = ({ transactions }) => {
   return (
     <VictoryPie
       data={xy}
-      height={250}
+      height={225}
       innerRadius={50}
       colorScale={"qualitative"}
       labels={d => `${d.x}: ${d.y.toFixed(2)}`}
-      labelRadius={105}
     />
   );
 };

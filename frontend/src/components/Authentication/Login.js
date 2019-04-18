@@ -6,7 +6,7 @@ import { TextField } from "final-form-material-ui";
 import { Grid } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { Form, Field } from "react-final-form";
-import { userLogin } from "react-admin";
+import { userLogin, Notification } from "react-admin";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -73,6 +73,7 @@ class Login extends Component {
             </form>
           )}
         />
+        <Notification />
       </AuthLayout>
     );
   }
