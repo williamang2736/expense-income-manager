@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { TextField } from "final-form-material-ui";
-import { Grid } from "@material-ui/core";
+import { Grid, Paper } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { Form, Field } from "react-final-form";
 import { userLogin, Notification } from "react-admin";
@@ -26,6 +26,11 @@ class Login extends Component {
           validate={validate}
           render={({ handleSubmit, reset, submitting, pristine, values }) => (
             <form onSubmit={handleSubmit} noValidate>
+              <div style={{ textAlign: "center", marginTop: "6px" }}>
+                <Typography variant="caption">
+                  Hint: demo / demodemo123
+                </Typography>
+              </div>
               <Grid container alignItems="flex-start" spacing={8}>
                 <Grid item xs={12}>
                   <Field
