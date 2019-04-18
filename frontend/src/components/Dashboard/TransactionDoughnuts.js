@@ -68,7 +68,7 @@ const TransactionChart = ({ transactions }) => {
       height={225}
       innerRadius={50}
       colorScale={"qualitative"}
-      labelRadius={95}
+      labelRadius={80}
       labels={d => {
         console.log(`${d.x}: ${d.y.toFixed(2)}`);
         return `${d.x}: ${d.y.toFixed(2)}`;
