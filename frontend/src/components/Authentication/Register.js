@@ -17,6 +17,7 @@ import {
   parseDjangoErrorsToNotificationMessages,
   displayErrorMessagesWithToastify
 } from "../../utils";
+import { validateEmail } from "../../validations";
 
 class Register extends Component {
   render() {
@@ -108,9 +109,15 @@ function validate(values) {
   }
   if (!values.password) {
     errors.password = "Required";
+  } else if (parseInt(password)) {
+    errors.password = "Password should not be all numbers";
+  } else if (values.password.length <= 8) {
+    errors.password = "Password should be longer than 8";
   }
   if (!values.email) {
     errors.email = "Required";
+  } else if (!validateEmail(values.email)) {
+    errors.email = "Invalid email";
   }
   return errors;
 }
