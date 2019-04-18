@@ -68,7 +68,12 @@ const TransactionChart = ({ transactions }) => {
       height={225}
       innerRadius={50}
       colorScale={"qualitative"}
-      labels={d => `${d.x}: ${d.y.toFixed(2)}`}
+      labelRadius={95}
+      labels={d => {
+        console.log(`${d.x}: ${d.y.toFixed(2)}`);
+        return `${d.x}: ${d.y.toFixed(2)}`;
+      }}
+      style={{ labels: { fontSize: 12 } }}
     />
   );
 };
