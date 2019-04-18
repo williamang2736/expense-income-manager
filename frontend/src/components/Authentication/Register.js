@@ -6,13 +6,14 @@ import { TextField } from "final-form-material-ui";
 import { Grid } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { Form, Field } from "react-final-form";
-import { userLogin } from "react-admin";
+import { userLogin, showNotification, Notification } from "react-admin";
 import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 import AuthLayout from "./AuthLayout";
 import AuthFormStyles from "./AuthFormStyles";
+import { parseDjangoErrorsToNotificationMessages } from "../../utils";
 
 class Register extends Component {
   render() {
@@ -27,7 +28,10 @@ class Register extends Component {
                 this.props.userLogin(values);
               })
               .catch(error => {
-                alert(error);
+                this.props.showNotification(
+                  parseDjangoErrorsToNotificationMessages(error.response.data),
+                  "warning"
+                );
               });
           }}
           initialValues={{}}
@@ -91,6 +95,7 @@ class Register extends Component {
             </form>
           )}
         />
+        <Notification />
       </AuthLayout>
     );
   }
@@ -112,5 +117,5 @@ function validate(values) {
 
 export default connect(
   undefined,
-  { userLogin }
+  { userLogin, showNotification }
 )(withStyles(AuthFormStyles)(Register));

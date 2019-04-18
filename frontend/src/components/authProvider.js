@@ -14,8 +14,9 @@ export default (type, params) => {
           localStorage.setItem("username", data.user.username);
         }
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        // error.response.data.message
+        return Promise.reject();
       });
   }
   // called when the user clicks on the logout button

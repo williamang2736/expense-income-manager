@@ -10,6 +10,7 @@ import {
   fetchUtils
 } from "react-admin";
 import { stringify } from "query-string";
+import { parseDjangoErrorsToNotificationMessages } from "../utils";
 
 const API_URL = "/api";
 
@@ -143,23 +144,10 @@ export default (type, resource, params) => {
           });
         }
         return Promise.reject({
-          message: formatErrorMessage(error),
+          message: parseDjangoErrorsToNotificationMessages(error),
           status: error.status
         });
       });
   };
   return httpClient(url, options);
 };
-
-function formatErrorMessage({ body }) {
-  let errorMessage = "Error: ";
-  for (var key in body) {
-    if (body.hasOwnProperty(key)) {
-      errorMessage += `${key}: `;
-      body[key].forEach(e => {
-        errorMessage += `${e}`;
-      });
-    }
-  }
-  return errorMessage;
-}
