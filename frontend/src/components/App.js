@@ -20,7 +20,7 @@ toast.configure({
   closeOnClick: true,
   pauseOnHover: true,
   transition: Slide,
-  position: "bottom-center"
+  position: "bottom-right"
 });
 
 class App extends Component {

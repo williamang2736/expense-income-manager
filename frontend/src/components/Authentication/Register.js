@@ -13,7 +13,10 @@ import { Link } from "react-router-dom";
 
 import AuthLayout from "./AuthLayout";
 import AuthFormStyles from "./AuthFormStyles";
-import { parseDjangoErrorsToNotificationMessages } from "../../utils";
+import {
+  parseDjangoErrorsToNotificationMessages,
+  displayErrorMessagesWithToastify
+} from "../../utils";
 
 class Register extends Component {
   render() {
@@ -28,10 +31,7 @@ class Register extends Component {
                 this.props.userLogin(values);
               })
               .catch(error => {
-                this.props.showNotification(
-                  parseDjangoErrorsToNotificationMessages(error.response.data),
-                  "warning"
-                );
+                displayErrorMessagesWithToastify(error.response.data);
               });
           }}
           initialValues={{}}
