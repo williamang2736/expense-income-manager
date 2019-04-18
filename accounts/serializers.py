@@ -10,22 +10,21 @@ from django.contrib.auth.password_validation import (
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("id", "username", "email")
+        fields = ("id", "username")
 
 
 # Register Serializer
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("id", "username", "email", "password")
+        fields = ("id", "username", "password")
         extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, validated_data):
 
         user = User.objects.create_user(
             validated_data["username"],
-            validated_data["email"],
-            validated_data["password"],
+            password=validated_data["password"],
         )
         return user
 

@@ -54,16 +54,6 @@ class Register extends Component {
                   <Field
                     fullWidth
                     required
-                    name="email"
-                    component={TextField}
-                    type="email"
-                    label="Email"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <Field
-                    fullWidth
-                    required
                     name="password"
                     component={TextField}
                     type="password"
@@ -109,15 +99,10 @@ function validate(values) {
   }
   if (!values.password) {
     errors.password = "Required";
-  } else if (parseInt(password)) {
+  } else if (parseInt(values.password)) {
     errors.password = "Password should not be all numbers";
   } else if (values.password.length <= 8) {
     errors.password = "Password should be longer than 8";
-  }
-  if (!values.email) {
-    errors.email = "Required";
-  } else if (!validateEmail(values.email)) {
-    errors.email = "Invalid email";
   }
   return errors;
 }
