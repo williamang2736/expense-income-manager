@@ -37,7 +37,7 @@ class Balance extends Component {
 
 const BalanceGridItem = ({ title, value }) => {
   return (
-    <Grid item sm={12} md={4}>
+    <Grid item xs={12} md={4}>
       <Card>
         <CardContent>
           <Typography color="textSecondary" gutterBottom>

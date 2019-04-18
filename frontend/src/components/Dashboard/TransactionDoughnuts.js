@@ -37,7 +37,7 @@ class TransactionDoughnuts extends React.Component {
 
 const TransactionChartGridItem = ({ resource, title, classes }) => {
   return (
-    <Grid item sm={12} md={6}>
+    <Grid item xs={12} md={6}>
       <Card className={classes.chartCard}>
         <Typography variant="title" className={classes.chartTitle}>
           {title}
