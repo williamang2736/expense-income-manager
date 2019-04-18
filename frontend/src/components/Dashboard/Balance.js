@@ -8,7 +8,11 @@ class Balance extends Component {
       <Query type="GET_ONE" resource="balance">
         {({ data, loading, error }) => {
           if (loading) {
-            return <Loading />;
+            return (
+              <Grid item xs={12}>
+                <Loading />
+              </Grid>
+            );
           }
           if (error) {
             return <p>{JSON.stringify(error)}</p>;
