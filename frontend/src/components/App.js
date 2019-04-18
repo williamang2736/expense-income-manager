@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import { Admin, Resource, ListGuesser, EditGuesser } from "react-admin";
 import ExpenseIcon from "@material-ui/icons/CreditCardTwoTone";
 import IncomeIcon from "@material-ui/icons/CreditCard";
+import { ToastContainer, toast, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Dashboard from "./Dashboard/Dashboard";
 import authProvider from "./authProvider";
@@ -11,6 +13,15 @@ import { ExpensesList, ExpenseEdit, ExpenseCreate } from "./expenses";
 import { IncomesList, IncomeEdit, IncomeCreate } from "./incomes";
 import Login from "./Authentication/Login";
 import customRoutes from "./customRoutes";
+
+toast.configure({
+  autoClose: 5000,
+  draggable: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  transition: Slide,
+  position: "bottom-center"
+});
 
 class App extends Component {
   render() {
