@@ -34,7 +34,6 @@ export const displayErrorMessagesWithToastify = errorBody => {
       toast.error(toastErrorContent(key, errorBody[key]));
     }
   }
-  return errorMessage;
 };
 
 const capitalize = s => {
