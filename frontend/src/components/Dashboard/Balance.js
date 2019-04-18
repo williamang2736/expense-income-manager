@@ -15,9 +15,18 @@ class Balance extends Component {
           }
           return (
             <Fragment>
-              <BalanceGridItem title={"Incomes"} value={data.income_sum} />
-              <BalanceGridItem title={"Expenses"} value={data.expense_sum} />
-              <BalanceGridItem title={"Balance"} value={data.balance} />
+              <BalanceGridItem
+                title={"Incomes"}
+                value={data.income_sum.toFixed(2)}
+              />
+              <BalanceGridItem
+                title={"Expenses"}
+                value={data.expense_sum.toFixed(2)}
+              />
+              <BalanceGridItem
+                title={"Balance"}
+                value={data.balance.toFixed(2)}
+              />
             </Fragment>
           );
         }}
