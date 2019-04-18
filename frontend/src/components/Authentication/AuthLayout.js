@@ -6,6 +6,7 @@ import Lock from "@material-ui/icons/Lock";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core";
+import "./AuthFormStyles.css";
 
 const styles = theme => ({
   main: {
@@ -38,18 +39,20 @@ class AuthLayout extends Component {
     const { classes, children, title = "Sign In" } = this.props;
 
     return (
-      <main className={classes.main}>
-        <CssBaseline />
-        <Paper className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <Lock />
-          </Avatar>
-          <Typography component="h1" variant="subheading">
-            {title}
-          </Typography>
-          {children}
-        </Paper>
-      </main>
+      <div className="auth-bg">
+        <main className={classes.main}>
+          <CssBaseline />
+          <Paper className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <Lock />
+            </Avatar>
+            <Typography component="h1" variant="subheading">
+              {title}
+            </Typography>
+            {children}
+          </Paper>
+        </main>
+      </div>
     );
   }
 }
