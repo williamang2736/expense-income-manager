@@ -34,7 +34,7 @@ class Login extends Component {
                     name="username"
                     component={TextField}
                     type="text"
-                    label="username"
+                    label="Username"
                   />
                 </Grid>
                 <Grid item xs={12}>
