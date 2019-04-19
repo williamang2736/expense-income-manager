@@ -30,11 +30,15 @@ $ pip install pipenv
 
 Install dependencies for server
 
+1. Delete Pipfile
+2. Delete Pipfile.lock
+3. Run the following command to install packages (from requirements.txt)
+
 ```
 $ pipenv install
 ```
 
-Install dependencies for client
+4. Install dependencies for client (for client side development)
 
 ```
 $ npm install
@@ -59,6 +63,7 @@ Running the server
 ```
 $ pipenv shell
 $ python manage.py migrate
+### Note that 'python manage.py migrate' is only required for the first time (for populating database tables)
 $ python manage.py runserver
 ### server runs on localhost:8000
 ```
