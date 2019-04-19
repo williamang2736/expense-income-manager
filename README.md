@@ -124,6 +124,7 @@ $ npm run dev
 - [Django Rest Framework](https://github.com/encode/django-rest-framework) - Django Rest Framework
 - [React](https://github.com/facebook/react) - Front end library
 - [React Admin](https://github.com/marmelab/react-admin) - Admin User Interface
+- [Victory Chart](https://github.com/FormidableLabs/victory-chart) - Visualization Library
 - Please refer to package.json file for more information
 
 ## License
