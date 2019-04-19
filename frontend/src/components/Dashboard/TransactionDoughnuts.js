@@ -65,23 +65,39 @@ const TransactionChartGridItem = ({ resource, title, classes }) => {
 };
 
 const TransactionChart = ({ transactions }) => {
+  let legendData = [];
   const xy = transactions.map(t => {
+    legendData.push({ name: t.name });
     return {
       x: t.name,
       y: t.amount_float,
       label: `${t.name}: ${t.amount}`
     };
   });
+
   return (
-    <VictoryPie
-      data={xy}
-      height={250}
-      innerRadius={60}
-      colorScale={"qualitative"}
-      labelRadius={70}
-      style={{ labels: { fontSize: 12 } }}
-      labelComponent={<VictoryTooltip active style={{ fontSize: "12px" }} />}
-    />
+    <svg width={"100%"} height={400}>
+      <VictoryLegend
+        standalone={false}
+        colorScale={["tomato", "orange", "gold"]}
+        gutter={20}
+        x={10}
+        centerTitle
+        data={legendData}
+        colorScale={"qualitative"}
+      />
+      <VictoryPie
+        standalone={false}
+        data={xy}
+        height={300}
+        innerRadius={80}
+        padding={{ left: 120, top: 40, bottom: 40 }}
+        colorScale={"qualitative"}
+        labelRadius={95}
+        style={{ labels: { fontSize: 12 } }}
+        labelComponent={<VictoryTooltip style={{ fontSize: "12px" }} />}
+      />
+    </svg>
   );
 };
 
