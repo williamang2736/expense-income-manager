@@ -99,8 +99,6 @@ function validate(values) {
   }
   if (!values.password) {
     errors.password = "Required";
-  } else if (parseInt(values.password)) {
-    errors.password = "Password should not be all numbers";
   } else if (values.password.length <= 8) {
     errors.password = "Password should be longer than 8";
   }
