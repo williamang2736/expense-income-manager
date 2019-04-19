@@ -22,7 +22,6 @@ export default (type, params) => {
   // called when the user clicks on the logout button
   if (type === AUTH_LOGOUT) {
     const token = localStorage.getItem("token");
-    console.log("called");
     return axios
       .post(
         "/api/auth/logout",
@@ -36,7 +35,7 @@ export default (type, params) => {
         localStorage.removeItem("token");
       })
       .catch(err => {
-        alert(err);
+        console.log(err);
       });
   }
   // called when the API returns an error

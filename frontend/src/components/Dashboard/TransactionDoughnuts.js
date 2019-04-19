@@ -70,7 +70,6 @@ const TransactionChart = ({ transactions }) => {
       colorScale={"qualitative"}
       labelRadius={80}
       labels={d => {
-        console.log(`${d.x}: ${d.y.toFixed(2)}`);
         return `${d.x}: ${d.y.toFixed(2)}`;
       }}
       style={{ labels: { fontSize: 12 } }}
