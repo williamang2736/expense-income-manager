@@ -40,7 +40,7 @@ const convertDataProviderRequestToHTTP = (
         queryParams = `sort=${field}`;
       }
 
-      return { url: `${API_URL}/${resource}?${queryParams}` };
+      return { url: `${API_URL}/${resource}/?${queryParams}` };
     }
     case GET_ONE:
       if (!params.id) params.id = "";
@@ -108,6 +108,8 @@ const convertHTTPResponseToDataProvider = (
       };
     case CREATE:
       return { data: { ...params.data, id: json.id } };
+    case DELETE:
+      return { data: { id: null } };
     default:
       return { data: json };
   }
@@ -144,7 +146,7 @@ export default (type, resource, params) => {
           });
         }
         return Promise.reject({
-          message: parseDjangoErrorsToNotificationMessages(error),
+          message: parseDjangoErrorsToNotificationMessages(error.body),
           status: error.status
         });
       });

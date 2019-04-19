@@ -2,6 +2,7 @@ import { toast } from "react-toastify";
 import React from "react";
 
 export const parseDjangoErrorsToNotificationMessages = errorBody => {
+  console.log("executed");
   let errorMessage = "Error: ";
   for (var key in errorBody) {
     if (errorBody.hasOwnProperty(key)) {

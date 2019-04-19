@@ -33,16 +33,16 @@ export const TransactionEdit = props => (
   <Edit {...props}>
     <SimpleForm validate={validateTransaction}>
       <TextInput source="name" autoComplete="off" />
-      <TextInput source="amount" />
+      <TextInput source="amount" autoComplete="off" />
     </SimpleForm>
   </Edit>
 );
 
 export const TransactionCreate = props => (
   <Create {...props}>
-    <SimpleForm validate={validateTransaction}>
+    <SimpleForm validate={validateTransaction} redirect={"list"}>
       <TextInput source="name" autoComplete="off" />
-      <TextInput source="amount" />
+      <TextInput source="amount" autoComplete="off" />
     </SimpleForm>
   </Create>
 );
