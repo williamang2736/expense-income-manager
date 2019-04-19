@@ -1,6 +1,6 @@
 # Food Examiner
 
-An application visualizes income and expenses information
+An application that visualizes incomes and expenses information
 
 # Demo
 
