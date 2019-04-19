@@ -40,6 +40,7 @@ class Login extends Component {
                     component={TextField}
                     type="text"
                     label="Username"
+                    autoComplete="off"
                   />
                 </Grid>
                 <Grid item xs={12}>
