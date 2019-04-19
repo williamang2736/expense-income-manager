@@ -1,0 +1,16 @@
+appdirs==1.4.3
+asn1crypto==0.24.0
+attrs==19.1.0
+black==19.3b0
+cffi==1.12.2
+Click==7.0
+cryptography==2.6.1
+Django==2.2
+django-rest-knox==4.0.1
+djangorestframework==3.9.2
+gunicorn==19.9.0
+pycparser==2.19
+pytz==2019.1
+six==1.12.0
+sqlparse==0.3.0
+toml==0.10.0
