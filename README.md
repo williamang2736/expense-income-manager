@@ -6,7 +6,7 @@ An application that visualizes incomes and expenses information
 
 ![Demo](demo/demo.gif)
 
-# Demo on Heroku
+# Live demo on Heroku
 
 https://expenseincomemanager.herokuapp.com
 
