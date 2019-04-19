@@ -14,7 +14,7 @@ import {
 
 import { validateTransaction } from "../validations";
 
-export const ExpensesList = props => (
+export const TransactionsList = props => (
   <List
     {...props}
     sort={{ field: "name", order: "DESC" }}
@@ -29,8 +29,7 @@ export const ExpensesList = props => (
     </Datagrid>
   </List>
 );
-
-export const ExpenseEdit = props => (
+export const TransactionEdit = props => (
   <Edit {...props}>
     <SimpleForm validate={validateTransaction}>
       <TextInput source="name" autoComplete="off" />
@@ -39,7 +38,7 @@ export const ExpenseEdit = props => (
   </Edit>
 );
 
-export const ExpenseCreate = props => (
+export const TransactionCreate = props => (
   <Create {...props}>
     <SimpleForm validate={validateTransaction}>
       <TextInput source="name" autoComplete="off" />

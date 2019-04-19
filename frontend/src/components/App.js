@@ -9,8 +9,11 @@ import "react-toastify/dist/ReactToastify.css";
 import Dashboard from "./Dashboard/Dashboard";
 import authProvider from "./authProvider";
 import dataProvider from "./dataProvider";
-import { ExpensesList, ExpenseEdit, ExpenseCreate } from "./expenses";
-import { IncomesList, IncomeEdit, IncomeCreate } from "./incomes";
+import {
+  TransactionsList,
+  TransactionEdit,
+  TransactionCreate
+} from "./transactions";
 import Login from "./Authentication/Login";
 import customRoutes from "./customRoutes";
 
@@ -35,16 +38,16 @@ class App extends Component {
       >
         <Resource
           name="expenses"
-          list={ExpensesList}
-          edit={ExpenseEdit}
-          create={ExpenseCreate}
+          list={TransactionsList}
+          edit={TransactionEdit}
+          create={TransactionCreate}
           icon={ExpenseIcon}
         />
         <Resource
           name="incomes"
-          list={IncomesList}
-          edit={IncomeEdit}
-          create={IncomeCreate}
+          list={TransactionsList}
+          edit={TransactionEdit}
+          create={TransactionCreate}
           icon={IncomeIcon}
         />
       </Admin>
