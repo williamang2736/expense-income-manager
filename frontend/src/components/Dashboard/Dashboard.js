@@ -7,7 +7,7 @@ import TransactionDoughnuts from "./TransactionDoughnuts";
 
 export default () => {
   return (
-    <div style={{ flexGrow: 1 }}>
+    <div style={{ flexGrow: 1, padding: "12px" }}>
       <Title title="Dashboard" />
       <Grid container spacing={24}>
         <Balance />

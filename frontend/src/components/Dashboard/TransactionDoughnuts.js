@@ -4,7 +4,13 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { CardHeader, Typography, Card, CardContent } from "@material-ui/core";
-import { VictoryPie, VictoryLabel } from "victory";
+import {
+  VictoryPie,
+  VictoryLabel,
+  VictoryTooltip,
+  VictoryChart,
+  VictoryLegend
+} from "victory";
 
 const styles = theme => ({
   chartCard: {
@@ -60,19 +66,21 @@ const TransactionChartGridItem = ({ resource, title, classes }) => {
 
 const TransactionChart = ({ transactions }) => {
   const xy = transactions.map(t => {
-    return { x: t.name, y: t.amount_float };
+    return {
+      x: t.name,
+      y: t.amount_float,
+      label: `${t.name}: ${t.amount}`
+    };
   });
   return (
     <VictoryPie
       data={xy}
-      height={225}
-      innerRadius={50}
+      height={250}
+      innerRadius={60}
       colorScale={"qualitative"}
-      labelRadius={95}
-      labels={d => {
-        return `${d.x}: ${d.y.toFixed(2)}`;
-      }}
+      labelRadius={70}
       style={{ labels: { fontSize: 12 } }}
+      labelComponent={<VictoryTooltip active style={{ fontSize: "12px" }} />}
     />
   );
 };
