@@ -1,4 +1,4 @@
-# Food Examiner
+# Income and Expense Manager
 
 An application that visualizes incomes and expenses information
 
